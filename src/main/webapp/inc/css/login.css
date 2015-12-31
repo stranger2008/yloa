@@ -1,0 +1,60 @@
+/*登录开始*/
+.login{
+	margin:0 auto;
+	width:760px;
+	vertical-align:middle;
+	margin-top:100px;
+	height:450px;
+	}
+.login_l{
+	width:300px;
+	height: auto;
+	padding:0 10px;
+	margin:20px 0;
+	background:url(../images/loginline.png) no-repeat;
+	background-position:315px 0;
+	}
+.login_l h2{
+	font-family:"微软雅黑";
+	font-size:30px;
+	font-weight:100;
+	color:#666666;
+	line-height:50px;
+	}
+.login_l span{
+	color:#ffa310;
+	}	
+.login_l p{
+	font-size:12px;
+	color:#333333;
+	line-height:24px;
+	}
+.login_r span{
+	width:70px;
+	height:25px;
+	line-height:20px;
+	display:inline-block;
+	text-align:right;
+	color:#666666;
+	font-weight:bold;
+	font-size:14px;
+	}
+.login_r .uid{
+	width:160px;
+	margin:5px;
+	}
+.login_r input{
+	width:165px;
+	margin:5px;
+	}
+.submit_btn{
+	width:154px;
+	height:25px;
+	line-height:20px;
+	text-align:center;
+	border:1px solid #8fccfa;
+	background:#d2f0ff;
+	color:#666;
+	font-weight:bold;
+	cursor:pointer;
+	}	

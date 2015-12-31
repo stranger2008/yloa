@@ -1,0 +1,26 @@
+/*
+ * ISConsole Copyright 2013 lilianglin . 
+ * All rights reserved.
+ * Package:com.lll.dao.impl
+ * FileName: {CLASSNAME}Dao.java 
+ */
+package com.lll.dao.impl;
+
+import org.springframework.stereotype.Repository;
+
+import com.lll.dao.I{CLASSNAME}Dao;
+import com.lll.model.{CLASSNAME};
+
+/**
+ * @function 功能  {FUNNAME}dao层业务接口实现类
+ * @author 创建人 {AUTHOR}
+ * @date 创建日期 {DATE}
+ */
+@Repository
+public class {CLASSNAME}Dao extends GenericDao<{CLASSNAME},String> implements I{CLASSNAME}Dao {
+	
+	public {CLASSNAME}Dao() {
+		super({CLASSNAME}.class);
+	}
+	
+}

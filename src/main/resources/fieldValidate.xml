@@ -1,0 +1,169 @@
+<!--  
+	table中的属性：id:表名
+	field中的属性：name：字段名
+	type：字段类型 （string为字符串,  int为整数,       email为电子邮件,       tel为固定电话,    mobile为移动电话,
+	double为浮点型,   chinese为中文,  idcard为18位身份证格式,  ip为IP格式,      time为时间格式,
+	alpha为字母,     repeat为重复字符  alphas 为数字、字母、下划线,              rmb人民币类型 ,url为域名
+	alphasfirst由字母开头和数字、字母、下划线组成 ,alphaslimt 数字、字母、下划线组成6-32位 ）
+	length：字段限制长度,长度为text表示为10000
+	required：是否必填，true为必填
+	cnname：中文名，方便提示所用
+	method：特殊验证方法method="update"
+-->
+<validatebody>
+	<table id="user" method="login">
+		<field name="user_name" type="string" length="100" required="true"/>
+		<field name="passwd" type="string" length="100" required="true"/>
+	</table>
+	
+	<table id="menu" method="view">
+		<field name="menu_id" type="string" length="200" required="true"/>
+	</table>
+	
+	<table id="menu" method="save">
+		<field name="menu_id" type="string" length="10" required="true"/>
+		<field name="menu_name" type="string" length="20" required="true"/>
+		<field name="sort_no" type="int" length="4" required="true"/>
+		<field name="target" type="string" length="10" required="false"/>
+		<field name="syscode" type="string" length="3" required="false"/>
+		<field name="up_menu_id" type="string" length="10" required="false"/>
+		<field name="menu_level" type="string" length="1" required="false"/>
+		<field name="url" type="string" length="100" required="false"/>
+	</table>
+	
+	<table id="user" method="view">
+		<field name="user_id" type="string" length="200" required="true"/>
+	</table>
+	
+	<table id="user" method="save">
+		<field name="user_name" type="string" length="20" required="true"/>
+		<field name="org_id" type="string" length="11" required="false"/>
+		<field name="role_id" type="string" length="11" required="false"/>
+		<field name="pos_id" type="string" length="11" required="false"/>
+		<field name="real_name" type="string" length="20" required="false"/>
+		<field name="img_path" type="string" length="100" required="false"/>
+		<field name="birth" type="string" length="20" required="false"/>
+		<field name="office_phone" type="string" length="20" required="false"/>
+		<field name="fax" type="string" length="20" required="false"/>
+		<field name="cellphone" type="string" length="20" required="false"/>
+		<field name="home_phone" type="string" length="20" required="false"/>
+		<field name="email" type="string" length="60" required="false"/>
+		<field name="address" type="string" length="50" required="false"/>
+		<field name="post_code" type="string" length="10" required="false"/>
+		<field name="state_code" type="string" length="1" required="false"/>
+	</table>
+	
+	<table id="position"  method="view">
+		<field name="pos_id" type="string" length="200" required="true"/>
+	</table>
+	<table id="position"  method="save">
+		
+		<field name="pos_name" type="string" length="50" required="true"/>
+		
+		<field name="sort_no" type="int" length="11" required="true"/>
+		
+		<field name="pos_desc" type="string" length="300" required="false"/>
+		
+	</table>
+	<table id="organize"  method="view">
+		<field name="org_id" type="string" length="200" required="true"/>
+	</table>
+	<table id="organize"  method="save">
+		<field name="org_name" type="string" length="50" required="true"/>
+		<field name="up_org_id" type="string" length="10" required="true"/>
+		<field name="org_level" type="string" length="1" required="true"/>
+		<field name="sort_no" type="int" length="11" required="true"/>
+		<field name="org_desc" type="string" length="300" required="false"/>
+	</table>
+	<table id="logs"  method="view">
+		<field name="log_id" type="string" length="200" required="true"/>
+	</table>
+	<table id="logs"  method="save">
+		
+		<field name="content" type="string" length="10000" required="true"/>
+		
+		<field name="ipaddr" type="string" length="20" required="true"/>
+		
+		<field name="in_date" type="datetime" length="10000" required="true"/>
+		
+		<field name="user_name" type="string" length="20" required="true"/>
+		
+	</table>
+	<table id="roleright"  method="view">
+		<field name="right_id" type="string" length="200" required="true"/>
+	</table>
+	<table id="roleright"  method="save">
+		
+		<field name="right_name" type="string" length="20" required="true"/>
+		
+		<field name="menu_id" type="string" length="10" required="true"/>
+		
+		<field name="url" type="string" length="100" required="true"/>
+		
+		<field name="type" type="string" length="1" required="true"/>
+		
+		<field name="remark" type="string" length="200" required="false"/>
+		
+	</table>
+	<table id="role"  method="view">
+		<field name="role_id" type="string" length="200" required="true"/>
+	</table>
+	<table id="role"  method="save">
+		
+		<field name="role_name" type="string" length="30" required="true"/>
+		
+		<field name="menu_right" type="string" length="10000" required="false"/>
+		
+		<field name="oper_right" type="string" length="10000" required="false"/>
+		
+		<field name="remark" type="string" length="200" required="false"/>
+		
+	</table>
+	<table id="oftenoperate"  method="view">
+		<field name="trade_id" type="string" length="200" required="true"/>
+	</table>
+	<table id="oftenoperate"  method="save">
+		
+		<field name="sort_no" type="int" length="11" required="true"/>
+		
+		<field name="oper_name" type="string" length="30" required="true"/>
+		
+		<field name="oper_url" type="string" length="200" required="true"/>
+		
+	</table>
+	<table id="parach"  method="view">
+		<field name="ch_code" type="string" length="200" required="true"/>
+	</table>
+	<table id="parach"  method="save">
+		
+		<field name="ch_name" type="string" length="50" required="true"/>
+		
+		<field name="is_edit" type="string" length="1" required="true"/>
+		
+		<field name="value_len" type="int" length="11" required="true"/>
+		
+	</table>
+	<table id="paravalue"  method="view">
+		<field name="val_id" type="string" length="200" required="true"/>
+	</table>
+	<table id="paravalue"  method="save">
+		
+		<field name="ch_code" type="string" length="50" required="true"/>
+		
+		<field name="val_key" type="string" length="50" required="true"/>
+		
+		<field name="val_value" type="string" length="500" required="true"/>
+		
+		<field name="rsrv1" type="string" length="50" required="false"/>
+		
+		<field name="rsrv2" type="string" length="50" required="false"/>
+		
+	</table>
+</validatebody>
+
+
+
+
+
+
+

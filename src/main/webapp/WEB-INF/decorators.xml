@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<decorators defaultdir="/WEB-INF/pages">  
+  
+	<decorator name="admin" page="adminframe.ftl">
+        <!-- 管理员后台sitemesh业务请求装饰 -->
+        <pattern>/admin/*.action</pattern>
+    </decorator>
+    
+</decorators>

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE sqlMap 
+    PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" 
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="organize">
+
+	<typeAlias alias="organize" type="com.lll.model.Organize" />
+
+	<select id="getByPk" parameterClass="java.lang.String"
+		resultClass="organize">
+		<![CDATA[ 
+    SELECT org_id,org_name,up_org_id,sort_no,org_level,org_desc FROM yl_organize WHERE org_id=$org_id$
+    ]]>
+	</select>
+
+	<update id="update" parameterClass="organize">
+		UPDATE yl_organize SET org_name=#org_name#,org_level=#org_level#,up_org_id=#up_org_id#,sort_no=#sort_no#,org_desc=#org_desc# WHERE org_id=$org_id$
+	</update>
+	
+	<update id="updateSort" parameterClass="java.util.HashMap">
+		 UPDATE yl_organize SET sort_no=#sort_no# WHERE org_id=$org_id$
+	</update>
+
+	<insert id="insert" parameterClass="organize">
+		INSERT INTO yl_organize (org_id,org_name,up_org_id,sort_no,org_desc,org_level) VALUES (#org_id#,#org_name#,#up_org_id#,#sort_no#,#org_desc#,#org_level#)
+	</insert>
+
+	<delete id="delete" parameterClass="java.lang.String">
+		DELETE FROM yl_organize WHERE org_id in ($org_id$)
+	</delete>
+
+	<sql id="getCommon">
+		FROM yl_organize 
+		<dynamic prepend="WHERE">
+			
+			<isNotNull prepend="and" property="org_name"> 
+			 	org_name like CONCAT('%',#org_name#,'%')
+		     </isNotNull>
+			
+			<isNotNull prepend="and" property="up_org_id"> 
+			 	up_org_id like CONCAT('%',#up_org_id#,'%')
+		     </isNotNull>
+			
+		</dynamic>
+	</sql>
+
+	<select id="getList" parameterClass="java.util.HashMap"
+		resultClass="java.util.HashMap">
+		SELECT org_id,org_name,up_org_id,sort_no,org_desc,org_level
+		<isParameterPresent>
+			<include refid="getCommon" />
+		</isParameterPresent>
+		ORDER BY org_level ASC,sort_no DESC
+	</select>
+
+	<select id="getCount" parameterClass="java.util.HashMap" resultClass="java.lang.Integer">
+		SELECT COUNT(*) ct
+		<isParameterPresent>
+			<include refid="getCommon" />
+		</isParameterPresent>
+	</select>
+
+</sqlMap>
+

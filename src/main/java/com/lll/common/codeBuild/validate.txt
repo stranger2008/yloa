@@ -1,0 +1,8 @@
+	<table id="{TABLENAME}"  method="view">
+		<field name="{TABLEKEY}" type="string" length="200" required="true"/>
+	</table>
+	<table id="{TABLENAME}"  method="save">
+		{fieldlist}
+		<field name="[field_name]" type="[field_name_type]" length="[field_name_length]" required="[field_name_required]"/>
+		{/fieldlist}
+	</table>

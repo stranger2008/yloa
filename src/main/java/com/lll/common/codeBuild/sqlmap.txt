@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE sqlMap 
+    PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" 
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="{TABLENAME}">
+
+	<typeAlias alias="{TABLENAME}" type="com.lll.model.{CLASSNAME}" />
+
+	<select id="getByPk" parameterClass="java.lang.String"
+		resultClass="{TABLENAME}">
+		<![CDATA[ 
+    SELECT {fieldkeylist}[field_name][field_node]{/fieldkeylist} FROM {DBPREFIX}{TABLENAME} WHERE {TABLEKEY}=${TABLEKEY}$
+    ]]>
+	</select>
+
+	<update id="update" parameterClass="{TABLENAME}">
+		UPDATE {DBPREFIX}{TABLENAME} SET {fieldlist}[field_name]=#[field_name]#[field_node]{/fieldlist} WHERE {TABLEKEY}=${TABLEKEY}$
+	</update>
+
+	<insert id="insert" parameterClass="{TABLENAME}">
+		INSERT INTO {DBPREFIX}{TABLENAME} ({fieldlist}[field_name][field_node]{/fieldlist}) VALUES ({fieldlist}#[field_name]#[field_node]{/fieldlist})
+	</insert>
+
+	<delete id="delete" parameterClass="java.lang.String">
+		DELETE FROM {DBPREFIX}{TABLENAME} WHERE {TABLEKEY} in (${TABLEKEY}$)
+	</delete>
+
+	<sql id="getCommon">
+		FROM {DBPREFIX}{TABLENAME} 
+		<dynamic prepend="WHERE">
+			{searchlist}
+			<isNotNull prepend="and" property="[field_name]"> 
+			 	[field_name] like CONCAT('%',#[field_name]#,'%')
+		     </isNotNull>
+			{/searchlist}
+		</dynamic>
+	</sql>
+
+	<select id="getList" parameterClass="java.util.HashMap"
+		resultClass="java.util.HashMap">
+		SELECT {fieldkeylist}[field_name][field_node]{/fieldkeylist}
+		<isParameterPresent>
+			<include refid="getCommon" />
+		</isParameterPresent>
+		ORDER BY {TABLEKEY} DESC
+	</select>
+
+	<select id="getCount" parameterClass="java.util.HashMap" resultClass="java.lang.Integer">
+		SELECT COUNT(*) ct
+		<isParameterPresent>
+			<include refid="getCommon" />
+		</isParameterPresent>
+	</select>
+
+</sqlMap>

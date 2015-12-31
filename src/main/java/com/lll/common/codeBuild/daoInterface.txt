@@ -1,0 +1,19 @@
+/*
+ * ISConsole Copyright 2013 lilianglin . 
+ * All rights reserved.
+ * Package:com.lll.dao
+ * FileName: I{CLASSNAME}Dao.java 
+ */
+package com.lll.dao;
+
+import com.lll.model.{CLASSNAME};
+
+/**
+ * @function 功能 {FUNNAME}dao层业务接口
+ * @author  创建人{AUTHOR}
+ * @date  创建日期 {DATE}
+ */
+
+public interface I{CLASSNAME}Dao extends IGenericDao<{CLASSNAME},String>{
+	
+}

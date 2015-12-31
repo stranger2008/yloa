@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="GBK"?>
+<!DOCTYPE sqlMapConfig
+  PUBLIC "-//ibatis.apache.org//DTD SQL Map Config 2.0//EN"
+  "http://ibatis.apache.org/dtd/sql-map-config-2.dtd">
+<sqlMapConfig>
+	<settings cacheModelsEnabled="true" enhancementEnabled="false"
+		lazyLoadingEnabled="false" maxRequests="3000" maxSessions="3000"
+		maxTransactions="3000" useStatementNamespaces="true" />
+	<sqlMap resource="com/lll/model/sql/user.xml" />
+	<sqlMap resource="com/lll/model/sql/menu.xml" />
+	<sqlMap resource="com/lll/model/sql/position.xml" />
+	<sqlMap resource="com/lll/model/sql/organize.xml" />
+	<sqlMap resource="com/lll/model/sql/logs.xml" />
+	<sqlMap resource="com/lll/model/sql/roleright.xml" />
+	<sqlMap resource="com/lll/model/sql/role.xml" />
+	<sqlMap resource="com/lll/model/sql/oftenoperate.xml" />
+	<sqlMap resource="com/lll/model/sql/parach.xml" />
+	<sqlMap resource="com/lll/model/sql/paravalue.xml" />
+</sqlMapConfig>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

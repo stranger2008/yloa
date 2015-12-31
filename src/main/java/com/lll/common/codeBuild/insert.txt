@@ -1,0 +1,42 @@
+<html>
+<head>
+<title>{FUNNAME}新增</title>
+</head>
+<body>
+
+<script type="text/javascript">
+	$(document).ready(function(){
+		$("#updateForm").validate({
+			rules: {
+				{fieldlist}"{TABLENAME}.[field_name]": {
+					required: [field_name_required],
+					maxlength: [field_name_length]
+				}[field_node]{/fieldlist}
+  			},
+  			messages: {
+  				{fieldlist}"{TABLENAME}.[field_name]": {
+			    	required: "请输入<@s.text name="{TABLENAME}.[field_name]"/>",
+			    	maxlength: jQuery.format("<@s.text name="{TABLENAME}.[field_name]"/>不能大于{0}个字符")
+			    }[field_node]{/fieldlist}
+  				
+   			}
+		});
+	});
+</script>
+<@s.form action="${ctx}admin/{TABLENAME}/insert.action" method="post" id="updateForm">
+	<table width="100%" cellpadding="0" cellspacing="2" class="edittab">
+		<tr><td><h2>{FUNNAME}新增</h2></td></tr>
+		{fieldlist}
+		<tr><th><@s.text name="{TABLENAME}.[field_name]"/>：[field_name_must]</th></tr>
+		<tr><td>
+			<@s.[field_text_type] name="{TABLENAME}.[field_name]"/>
+		</td></tr>
+		{/fieldlist}
+		<tr><td>
+			<@s.token name="token"/>
+			<input type="submit" class="tjbutton" value="提交" />
+		</td></tr>
+	</table>
+</@s.form>
+</body>
+</html>

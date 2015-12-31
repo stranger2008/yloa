@@ -1,0 +1,2 @@
+{fieldlist}{TABLENAME}.[field_name]=[field_name]
+{/fieldlist}
