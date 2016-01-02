@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE sqlMap 
+    PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" 
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="position">
+
+	<typeAlias alias="position" type="com.lll.model.Position" />
+
+	<select id="getByPk" parameterClass="java.lang.String"
+		resultClass="position">
+		<![CDATA[ 
+    SELECT pos_id,pos_name,sort_no,pos_desc FROM yl_position WHERE pos_id=$pos_id$
+    ]]>
+	</select>
+
+	<update id="update" parameterClass="position">
+		UPDATE yl_position SET pos_name=#pos_name#,sort_no=#sort_no#,pos_desc=#pos_desc# WHERE pos_id=$pos_id$
+	</update>
+	
+	<update id="updateSort" parameterClass="java.util.HashMap">
+		 UPDATE yl_position SET sort_no=#sort_no# WHERE pos_id=$pos_id$
+	</update>
+
+	<insert id="insert" parameterClass="position">
+		INSERT INTO yl_position (pos_name,sort_no,pos_desc) VALUES (#pos_name#,#sort_no#,#pos_desc#)
+	</insert>
+
+	<delete id="delete" parameterClass="java.lang.String">
+		DELETE FROM yl_position WHERE pos_id in ($pos_id$)
+	</delete>
+
+	<sql id="getCommon">
+		FROM yl_position 
+		<dynamic prepend="WHERE">
+			
+			<isNotNull prepend="and" property="pos_name"> 
+			 	pos_name like CONCAT('%',#pos_name#,'%')
+		     </isNotNull>
+			
+		</dynamic>
+	</sql>
+
+	<select id="getList" parameterClass="java.util.HashMap"
+		resultClass="java.util.HashMap">
+		SELECT pos_id,pos_name,sort_no,pos_desc
+		<isParameterPresent>
+			<include refid="getCommon" />
+		</isParameterPresent>
+		ORDER BY sort_no DESC
+	</select>
+
+	<select id="getCount" parameterClass="java.util.HashMap" resultClass="java.lang.Integer">
+		SELECT COUNT(*) ct
+		<isParameterPresent>
+			<include refid="getCommon" />
+		</isParameterPresent>
+	</select>
+
+</sqlMap>
+

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE sqlMap 
+    PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" 
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="menu">
+
+	<typeAlias alias="menu" type="com.lll.model.Menu" />
+	
+	<select id="getByPk" parameterClass="java.lang.String" resultClass="menu">
+    	select * from yl_menu where menu_id=#value#
+	</select>
+	
+	<delete id="delete" parameterClass="java.lang.String">
+		delete from yl_menu where menu_id in ($value$)
+	</delete>
+	
+	<update id="updateSort" parameterClass="java.util.HashMap">
+		 UPDATE yl_menu SET sort_no=#sort_no# WHERE menu_id=$menu_id$
+	</update>
+	
+	<insert id="insert" parameterClass="menu">
+		INSERT INTO yl_menu
+		(menu_id,menu_name,syscode,up_menu_id,menu_level,sort_no,url,target)
+		VALUES
+		(#menu_id#,#menu_name#,#syscode#,#up_menu_id#,#menu_level#,$sort_no$,#url#,#target#)
+	</insert>
+	
+	<update id="update" parameterClass="menu">
+		UPDATE yl_menu SET
+		menu_name=#menu_name#,syscode=#syscode#,up_menu_id=#up_menu_id#,menu_level=#menu_level#,sort_no=$sort_no$,url=#url#,target=#target#
+		WHERE menu_id=#menu_id#
+	</update>
+
+	<sql id="getCommon">
+		FROM yl_menu
+	     <dynamic prepend="WHERE">
+			 <isNotNull prepend="and" property="syscode"> 
+			 	syscode=#syscode#
+		     </isNotNull>
+		     <isNotNull prepend="and" property="up_menu_id"> 
+			 	up_menu_id=#up_menu_id#
+		     </isNotNull>
+		     <isNotNull prepend="and" property="menu_level"> 
+			 	menu_level=#menu_level#
+		     </isNotNull>
+		     <isNotNull prepend="and" property="menu_name"> 
+			 	menu_name like '%$menu_name$%' 
+		     </isNotNull>
+		     <isNotNull prepend="and" property="menu_right"> 
+			 	menu_id in ($menu_right$)
+		     </isNotNull>
+	     </dynamic>
+	</sql>
+
+	<select id="getList" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+		SELECT *
+		<isParameterPresent>
+			<include refid="getCommon" />
+		</isParameterPresent>
+		ORDER BY menu_level ASC,sort_no ASC
+	</select>
+
+	<select id="getCount" parameterClass="java.util.HashMap" resultClass="java.lang.Integer">
+		SELECT COUNT(*) ct
+		<isParameterPresent>
+			<include refid="getCommon" />
+		</isParameterPresent>
+	</select>
+	
+	<select id="getThreeMenuListByOneMenu" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+		SELECT * FROM yl_menu WHERE up_menu_id IN 
+		( SELECT menu_id FROM yl_menu WHERE up_menu_id=#menu_id# ) 
+		<isNotNull prepend="and" property="menu_right"> 
+		 	menu_id in ($menu_right$)
+	    </isNotNull>
+		ORDER BY sort_no ASC
+	</select>
+
+</sqlMap>
