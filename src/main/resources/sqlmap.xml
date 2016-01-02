@@ -6,16 +6,16 @@
 	<settings cacheModelsEnabled="true" enhancementEnabled="false"
 		lazyLoadingEnabled="false" maxRequests="3000" maxSessions="3000"
 		maxTransactions="3000" useStatementNamespaces="true" />
-	<sqlMap resource="com/lll/model/sql/user.xml" />
-	<sqlMap resource="com/lll/model/sql/menu.xml" />
-	<sqlMap resource="com/lll/model/sql/position.xml" />
-	<sqlMap resource="com/lll/model/sql/organize.xml" />
-	<sqlMap resource="com/lll/model/sql/logs.xml" />
-	<sqlMap resource="com/lll/model/sql/roleright.xml" />
-	<sqlMap resource="com/lll/model/sql/role.xml" />
-	<sqlMap resource="com/lll/model/sql/oftenoperate.xml" />
-	<sqlMap resource="com/lll/model/sql/parach.xml" />
-	<sqlMap resource="com/lll/model/sql/paravalue.xml" />
+	<sqlMap resource="sqlmap/user.xml" />
+	<sqlMap resource="sqlmap/menu.xml" />
+	<sqlMap resource="sqlmap/position.xml" />
+	<sqlMap resource="sqlmap/organize.xml" />
+	<sqlMap resource="sqlmap/logs.xml" />
+	<sqlMap resource="sqlmap/roleright.xml" />
+	<sqlMap resource="sqlmap/role.xml" />
+	<sqlMap resource="sqlmap/oftenoperate.xml" />
+	<sqlMap resource="sqlmap/parach.xml" />
+	<sqlMap resource="sqlmap/paravalue.xml" />
 </sqlMapConfig>
 
 
